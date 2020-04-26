@@ -1,0 +1,19 @@
+{
+  "name": "bs-cfgrammar-tool",
+  "version": "0.1.0",
+  "description": "ReasonML bindings for the npm package cfgrammar-tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heldeo/bs-cfgrammar-tool.git"
+  },
+  "author": "Chris Cortina <heldeo3@hotmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/heldeo/bs-cfgrammar-tool/issues"
+  },
+  "homepage": "https://github.com/heldeo/bs-cfgrammar-tool#readme"
+}
