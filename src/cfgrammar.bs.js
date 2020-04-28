@@ -3,16 +3,39 @@
 
 var Types = require("cfgrammar-tool/types");
 
+function rule(name, production) {
+  return new Types.Rule(name, production);
+}
+
 function sym(t, d) {
   return new Types.Sym(t, d);
+}
+
+function equals(obj1, obj2) {
+  return obj1.equals(obj2);
 }
 
 function sym$1(t, d) {
   return new Types.Sym(t, d);
 }
 
+function nt(d) {
+  return new Types.Sym("NT", d);
+}
+
+function t(d) {
+  return new Types.Sym("T", d);
+}
+
+function rule$1(n, p) {
+  return new Types.Rule(n, p);
+}
+
 var Types$1 = {
-  sym: sym$1
+  sym: sym$1,
+  nt: nt,
+  t: t,
+  rule: rule$1
 };
 
 function types(param) {
@@ -23,9 +46,9 @@ var Cfgrammar = {
   types: types
 };
 
-console.log(new Types.Sym("w", "w"));
-
+exports.rule = rule;
 exports.sym = sym;
+exports.equals = equals;
 exports.Types = Types$1;
 exports.Cfgrammar = Cfgrammar;
-/*  Not a pure module */
+/* cfgrammar-tool/types Not a pure module */
