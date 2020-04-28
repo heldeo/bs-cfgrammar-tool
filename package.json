@@ -7,12 +7,12 @@
         "clean": "bsb -clean-world",
         "build": "bsb -make-world",
         "watch": "bsb -make-world -w",
-        "test": "jest"
+        "test": "jest --env node"
     },
     "devDependencies": {
+        "@glennsl/bs-jest": "^0.5.1",
         "bs-platform": "",
-        "jest": "*",
-        "@glennsl/bs-jest": "*"
+        "jest": "*"
     },
     "files": [
         "src/cfgrammar.re",

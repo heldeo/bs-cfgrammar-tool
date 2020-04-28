@@ -7,16 +7,24 @@ var CfgrammarTool = require("./../node_modules/cfgrammar-tool");
 
 var cfgrammar_js = CfgrammarTool;
 
-console.log(Cfgrammar.equals(Cfgrammar.Types.sym("NT", "A"), (new cfgrammar_js.types.Sym("NT","A"))));
-
-var obj = Cfgrammar.Types.sym("NT", "A");
-
-console.log((typeof obj));
-
-Jest.test("Returns Symbol Object", (function (param) {
-        return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.equals(Cfgrammar.Types.sym("NT", "A"), (new cfgrammar_js.types.Sym("NT","A")))));
+Jest.describe("Functionality of types submodule", (function (param) {
+        Jest.test("Returns Symbol Object", (function (param) {
+                return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.compare_sym(Cfgrammar.Types.sym("NT", "A"), (new cfgrammar_js.types.Sym("NT","A")))));
+              }));
+        Jest.test("Return Non-terminal (NT) with string passed into constructor", (function (param) {
+                return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.compare_sym(Cfgrammar.Types.nt("A"), (cfgrammar_js.types.NT("A")))));
+              }));
+        Jest.test("Return Terminal (T)  with string passed into constructor", (function (param) {
+                return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.compare_sym(Cfgrammar.Types.t("A"), (cfgrammar_js.types.T("A")))));
+              }));
+        return Jest.test("Rule creation with input: (E,  [T(a),NT(B)] )", (function (param) {
+                      var prod_rules = [
+                        Cfgrammar.Types.t("a"),
+                        Cfgrammar.Types.nt("B")
+                      ];
+                      return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.compare_rule(Cfgrammar.Types.rule("E", prod_rules), (cfgrammar_js.types.Rule("E",prod_rules)))));
+                    }));
       }));
 
 exports.cfgrammar_js = cfgrammar_js;
-exports.obj = obj;
 /* cfgrammar_js Not a pure module */

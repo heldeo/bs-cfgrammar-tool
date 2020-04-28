@@ -7,11 +7,15 @@ function rule(name, production) {
   return new Types.Rule(name, production);
 }
 
+function compare_rule(obj1, obj2) {
+  return obj1.equals(obj2);
+}
+
 function sym(t, d) {
   return new Types.Sym(t, d);
 }
 
-function equals(obj1, obj2) {
+function compare_sym(obj1, obj2) {
   return obj1.equals(obj2);
 }
 
@@ -47,8 +51,9 @@ var Cfgrammar = {
 };
 
 exports.rule = rule;
+exports.compare_rule = compare_rule;
 exports.sym = sym;
-exports.equals = equals;
+exports.compare_sym = compare_sym;
 exports.Types = Types$1;
 exports.Cfgrammar = Cfgrammar;
 /* cfgrammar-tool/types Not a pure module */

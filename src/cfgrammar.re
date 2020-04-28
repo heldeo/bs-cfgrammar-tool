@@ -2,12 +2,13 @@ type sym = {
 
     [@bs.as "type"] _type:string,
     data:string,
+    compare_sym: (sym,sym) => bool
 };
 type rule = {
 
     name: string,
     production: array(sym),
-    equals: (rule,rule) => bool
+    compare_rule: (rule,rule) => bool
 };
 [@bs.module "cfgrammar-tool/types"][@bs.new]
 external rule: (string,array(sym)) => rule = "Rule";
@@ -15,7 +16,7 @@ let rule = (name,production) => rule(name,production);
 
 [@bs.send] 
 external equals: (rule,rule) => bool = "equals";
-let equals = (obj1,obj2) => equals(obj1,obj2);
+let compare_rule= (obj1,obj2) => equals(obj1,obj2);
 
 [@bs.module "cfgrammar-tool/types"][@bs.new]
 external sym : (string,string) => sym = "Sym";
@@ -24,7 +25,7 @@ let sym = (t,d) => sym(t,d);
 
 [@bs.send]
 external equals: (sym,sym) => bool = "equals";
-let equals = (obj1,obj2) => equals(obj1,obj2);
+let compare_sym= (obj1,obj2) => equals(obj1,obj2);
 
 module type Types_sig = {
     let sym: (string,string) => sym;
