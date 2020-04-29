@@ -13,18 +13,24 @@ g_lib_incls = -I src
 rule build_ast_from_re
   command = $bsc  $warnings -color always $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
   description = [34mBuilding[39m [2m${out}[22m
-build  __tests__/cfgrammar_test.reast : build_ast_from_re $src_root_dir/__tests__/cfgrammar_test.re
+build  __tests__/cfg_js.reast : build_ast_from_re $src_root_dir/__tests__/cfg_js.re
 rule build_deps
-  command = $bsdep -hash 8bca1138361918a74ec85c387df995c4 $g_ns -g $bsb_dir_group $in
+  command = $bsdep -hash 0cb7166f446cb5186880109ebc1972b7 $g_ns -g $bsb_dir_group $in
   restat = 1
   description = [34mBuilding[39m [2m${out}[22m
-build  __tests__/cfgrammar_test.d : build_deps __tests__/cfgrammar_test.reast
+build  __tests__/cfg_js.d : build_deps __tests__/cfg_js.reast
   bsb_dir_group = 1
 rule ml_cmj_cmi_dev
   command = $bsc $g_pkg_flg -color always -bs-suffix $g_dev_incls $g_lib_incls $g_dpkg_incls $warnings $bsc_flags -o $out $in
   dyndep = $in_e.d
   restat = 1
   description = [34mBuilding[39m [2m${out}[22m
+build  __tests__/cfg_js.cmj |  __tests__/cfg_js.cmi $src_root_dir/__tests__/cfg_js.bs.js : ml_cmj_cmi_dev __tests__/cfg_js.reast ||  __tests__/cfg_js.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:__tests__
+  g_dev_incls = $bsc_group_1_includes
+build  __tests__/cfgrammar_test.reast : build_ast_from_re $src_root_dir/__tests__/cfgrammar_test.re
+build  __tests__/cfgrammar_test.d : build_deps __tests__/cfgrammar_test.reast
+  bsb_dir_group = 1
 build  __tests__/cfgrammar_test.cmj |  __tests__/cfgrammar_test.cmi $src_root_dir/__tests__/cfgrammar_test.bs.js : ml_cmj_cmi_dev __tests__/cfgrammar_test.reast ||  __tests__/cfgrammar_test.d
   g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:__tests__
   g_dev_incls = $bsc_group_1_includes

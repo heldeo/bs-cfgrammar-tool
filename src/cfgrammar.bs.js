@@ -2,7 +2,9 @@
 'use strict';
 
 var Types = require("cfgrammar-tool/types");
+var Parser = require("cfgrammar-tool/parser");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
+var Generate = require("cfgrammar-tool/generate");
 
 function rule(name, production) {
   return new Types.Rule(name, production);
@@ -10,6 +12,10 @@ function rule(name, production) {
 
 function sym(t, d) {
   return new Types.Sym(t, d);
+}
+
+function grammar(rules, start) {
+  return new Types.Grammar(rules, start);
 }
 
 function compare_rule(obj1, obj2) {
@@ -33,7 +39,7 @@ function equals(obj1, obj2) {
         Caml_builtin_exceptions.match_failure,
         /* tuple */[
           "cfgrammar.re",
-          29,
+          39,
           49
         ]
       ];
@@ -55,34 +61,51 @@ function rule$1(n, p) {
   return new Types.Rule(n, p);
 }
 
+function grammar$1(rules, start) {
+  return new Types.Grammar(rules, start);
+}
+
 var Types$1 = {
   sym: sym$1,
   nt: nt,
   t: t,
-  rule: rule$1
+  rule: rule$1,
+  grammar: grammar$1
 };
 
-function types(param) {
-  return /* Types */0;
+function parse(grammar, str, produceCount) {
+  return Parser.parser(grammar, str, produceCount);
 }
 
-var Cfgrammar = {
-  types: types
+function parse$1(grammar, str, produceCount) {
+  return Parser.parser(grammar, str, produceCount);
+}
+
+var Parse = {
+  parse: parse$1
 };
 
-console.log(equals(/* `Sym */[
-          4154599,
-          new Types.Sym("NT", "A")
-        ], /* `Sym */[
-          4154599,
-          new Types.Sym("NT", "A")
-        ]));
+function generatorFactory(grammar, determinism) {
+  return new Generate.generatorFactory(grammar, determinism);
+}
+
+function generatorFactory$1(grammar, determinism) {
+  return new Generate.generatorFactory(grammar, determinism);
+}
+
+var Genreator = {
+  generatorFactory: generatorFactory$1
+};
 
 exports.rule = rule;
 exports.sym = sym;
+exports.grammar = grammar;
 exports.compare_rule = compare_rule;
 exports.compare_sym = compare_sym;
 exports.equals = equals;
 exports.Types = Types$1;
-exports.Cfgrammar = Cfgrammar;
-/*  Not a pure module */
+exports.parse = parse;
+exports.Parse = Parse;
+exports.generatorFactory = generatorFactory;
+exports.Genreator = Genreator;
+/* cfgrammar-tool/types Not a pure module */
