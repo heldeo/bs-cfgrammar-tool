@@ -2,21 +2,41 @@
 'use strict';
 
 var Types = require("cfgrammar-tool/types");
+var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 function rule(name, production) {
   return new Types.Rule(name, production);
-}
-
-function compare_rule(obj1, obj2) {
-  return obj1.equals(obj2);
 }
 
 function sym(t, d) {
   return new Types.Sym(t, d);
 }
 
+function compare_rule(obj1, obj2) {
+  return obj1.equals(obj2);
+}
+
 function compare_sym(obj1, obj2) {
   return obj1.equals(obj2);
+}
+
+function equals(obj1, obj2) {
+  if (obj1[0] >= 915186972) {
+    if (typeof obj2 !== "number" && obj2[0] === 915186972) {
+      return obj1[1].equals(obj2[1]);
+    }
+    
+  } else if (typeof obj2 !== "number" && obj2[0] === 4154599) {
+    return obj1[1].equals(obj2[1]);
+  }
+  throw [
+        Caml_builtin_exceptions.match_failure,
+        /* tuple */[
+          "cfgrammar.re",
+          29,
+          49
+        ]
+      ];
 }
 
 function sym$1(t, d) {
@@ -50,10 +70,19 @@ var Cfgrammar = {
   types: types
 };
 
+console.log(equals(/* `Sym */[
+          4154599,
+          new Types.Sym("NT", "A")
+        ], /* `Sym */[
+          4154599,
+          new Types.Sym("NT", "A")
+        ]));
+
 exports.rule = rule;
-exports.compare_rule = compare_rule;
 exports.sym = sym;
+exports.compare_rule = compare_rule;
 exports.compare_sym = compare_sym;
+exports.equals = equals;
 exports.Types = Types$1;
 exports.Cfgrammar = Cfgrammar;
-/* cfgrammar-tool/types Not a pure module */
+/*  Not a pure module */
