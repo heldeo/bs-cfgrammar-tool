@@ -36,18 +36,21 @@ Jest.describe("Functionality of types submodule", (function (param) {
                                     (cfgrammar_js.types.T("A"))
                                   ])));
               }));
-        return Jest.test("Rule creation with input: (E,  [T(a),NT(B)] )", (function (param) {
-                      var prod_rules = [
-                        Cfgrammar.Types.t("a"),
-                        Cfgrammar.Types.nt("B")
-                      ];
-                      return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.equals(/* `Rule */[
-                                          915186972,
-                                          Cfgrammar.Types.rule("E", prod_rules)
-                                        ], /* `Rule */[
-                                          915186972,
-                                          (cfgrammar_js.types.Rule("E",prod_rules))
-                                        ])));
+        Jest.test("Rule creation with input: (E,  [T(a),NT(B)] )", (function (param) {
+                var prod_rules = [
+                  Cfgrammar.Types.t("a"),
+                  Cfgrammar.Types.nt("B")
+                ];
+                return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.equals(/* `Rule */[
+                                    915186972,
+                                    Cfgrammar.Types.rule("E", prod_rules)
+                                  ], /* `Rule */[
+                                    915186972,
+                                    (cfgrammar_js.types.Rule("E",prod_rules))
+                                  ])));
+              }));
+        return Jest.test("Grammar creation with rule (E, [T(a), NT(B)])", (function (param) {
+                      return Jest.Expect.toBe(true, Jest.Expect.expect(true));
                     }));
       }));
 
