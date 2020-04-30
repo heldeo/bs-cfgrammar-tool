@@ -72,16 +72,15 @@ module Parse:Parse_sig = {
 }
 
 type generator;
+[@bs.module "cfgrammar-tool"]
+external generator: (grammar,bool) => ( (int) =>string)  = "generator";
+let generator = (grammar,determinism:bool) => generator(grammar,determinism);
+/*
+[@bs.val]
+external generate: (generator,int) => string = "";
+let generate = (generator,cardinality) => [%bs.raw
+{|
+     (generator,cardinality) =>  generator(cardinality)     
 
-[@bs.module "cfgrammar-tool/generate"][@bs.new]
-external generatorFactory: (grammar,~determinism:bool) => generator = "generatorFactory";
-let generatorFactory = (grammar,~determinism:bool) => generatorFactory(grammar,determinism);
-
-module type Generator_sig = {
-    let generatorFactory: (grammar,~determinism:bool) => generator; 
-}
-module Genreator:Generator_sig = {
-    
-    let generatorFactory =  (grammar,~determinism:bool) => generatorFactory(grammar,determinism);
-
-}
+|}];
+*/
