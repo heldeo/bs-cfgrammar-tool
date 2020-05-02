@@ -14,15 +14,13 @@ type grammar = {
     rules: array(rule),
     start: string
 };
-[@bs.module "cfgrammar-tool/types"][@bs.new]
+[@bs.new]
 external rule: (string,array(sym)) => rule = "Rule";
 let rule = (name,production) => rule(name,production);
 
 [@bs.module "cfgrammar-tool/types"][@bs.new]
 external sym : (string,string) => sym = "Sym";
 let sym = (t,d) => sym(t,d);
-
-
 
 [@bs.module "cfgrammar-tool/types"][@bs.new]
 external grammar: (array(rule),string) => grammar = "Grammar";
@@ -84,6 +82,5 @@ let __gen_identity: (generator,int) => string = [%bs.raw {|
     }
 
 |}]; 
-//let generator = (grammar,determinism) => generator(grammar,determinism);
-//let generator = (grammar,~a:option(bool)) => generator(grammar,~a);
+
 let generate = (gen,card) => __gen_identity(gen,card); 

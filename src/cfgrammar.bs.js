@@ -6,7 +6,7 @@ var Types = require("cfgrammar-tool/types");
 var Parser = require("cfgrammar-tool/parser");
 
 function rule(name, production) {
-  return new Types.Rule(name, production);
+  return new Rule(name, production);
 }
 
 function sym(t, d) {
@@ -54,7 +54,7 @@ function t(d) {
 }
 
 function rule$1(n, p) {
-  return new Types.Rule(n, p);
+  return new Rule(n, p);
 }
 
 function grammar$1(rules, start) {
