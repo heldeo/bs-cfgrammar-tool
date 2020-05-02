@@ -39,6 +39,7 @@ let compare_sym = (obj1,obj2) => equals(obj1,obj2);
 let equals = (obj1: sub_types,obj2:sub_types) => switch(obj1,obj2){
     | (`Rule(obj1),`Rule(obj2)) => compare_rule(obj1,obj2);
     | (`Sym(obj1),`Sym(obj2)) => compare_sym(obj1,obj2);
+    | _=>  exception TypeMismatched(string);raise(TypeMismatched("Rule comparison with Symbol"));
     };
 
 module type Types_sig = {
@@ -59,28 +60,30 @@ module Types:Types_sig =
 };
 
 [@bs.module "cfgrammar-tool/parser"][@bs.val]
-external parse: (grammar,string, int) => int = "parser";
-let parse = (grammar,str,~produceCount:int) => parse(grammar,str,produceCount);
+external parse: (grammar,string, ~produceCount: int=?) => int = "parser";
+//let parse = (grammar,str,~produceCount:int=?) => parse(grammar,str,produceCount);
 
 module type Parse_sig = {
     let parse: (grammar,string, ~produceCount:int) => int;
     
     };
 module Parse:Parse_sig = {
-    let parse =  (grammar,str,~produceCount:int) => parse(grammar,str,produceCount); 
+    let parse =  (grammar,str,~produceCount:int) => parse(grammar,str,~produceCount); 
 
 }
 
 type generator;
 [@bs.module "cfgrammar-tool"]
-external generator: (grammar,bool) => ( (int) =>string)  = "generator";
-let generator = (grammar,determinism:bool) => generator(grammar,determinism);
-/*
-[@bs.val]
-external generate: (generator,int) => string = "";
-let generate = (generator,cardinality) => [%bs.raw
-{|
-     (generator,cardinality) =>  generator(cardinality)     
+external generator: (grammar,~determinism:bool=?) => generator =  "generator";
 
-|}];
-*/
+let __gen_identity: (generator,int) => string = [%bs.raw {| 
+
+    function(gen,cardinality) {
+
+    return gen(cardinality);
+    }
+
+|}]; 
+//let generator = (grammar,determinism) => generator(grammar,determinism);
+//let generator = (grammar,~a:option(bool)) => generator(grammar,~a);
+let generate = (gen,card) => __gen_identity(gen,card); 
