@@ -1,5 +1,6 @@
 open Jest
 open Expect
+
 type cfgrammar;
 [@bs.module] external cfgrammar_js: cfgrammar = "./../node_modules/cfgrammar-tool"; 
 
@@ -21,17 +22,6 @@ describe ("Types submodule, Symbol, Rule and equality functionality",()=>{
         expect(Cfgrammar.equals(`Rule(Cfgrammar.Types.rule("E",prod_rules)),`Rule([%raw {| cfgrammar_js.types.Rule("E",prod_rules) |}] ))) |> toBe(true);
 
         });
-    test("Tests reduction (string in grammar)", () =>{
-    let rhs: array(Cfgrammar.sym)  = [|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]; 
-    let rules = [|
-    Cfgrammar.Types.rule("S",[|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]),
-    Cfgrammar.Types.rule("S",[|Cfgrammar.Types.t("a")|]),
-    Cfgrammar.Types.rule("B",[| |]) |];
-    let grammar = Cfgrammar.grammar(rules,"S");
-    let did_parse = Cfgrammar.Parse.parse(grammar,"a") 
-        |> Cfgrammar.Parse.length;
-    expect(did_parse > 0) |> toBe(true);
-    });
 
 }); 
 
