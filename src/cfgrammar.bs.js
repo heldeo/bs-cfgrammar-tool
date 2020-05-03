@@ -69,12 +69,21 @@ var Types$1 = {
   grammar: grammar$1
 };
 
-function parse(grammar, str, produceCount) {
-  return Parser.parser(grammar, str, produceCount);
+var __len_identity = (function(parse){
+        return parse.length;
+        });
+
+var __length = __len_identity;
+
+function parse(grammar, str) {
+  return Parser.parse(grammar, str);
 }
 
+var length = __len_identity;
+
 var Parse = {
-  parse: parse
+  parse: parse,
+  length: length
 };
 
 var __gen_identity = (function(gen,cardinality) {
@@ -91,6 +100,8 @@ exports.compare_rule = compare_rule;
 exports.compare_sym = compare_sym;
 exports.equals = equals;
 exports.Types = Types$1;
+exports.__len_identity = __len_identity;
+exports.__length = __length;
 exports.Parse = Parse;
 exports.__gen_identity = __gen_identity;
 exports.generate = generate;

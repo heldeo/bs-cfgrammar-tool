@@ -56,18 +56,25 @@ module Types:Types_sig =
     let grammar = (rules,start) => grammar(rules,start);
 
 };
-
+type parse;
 [@bs.module "cfgrammar-tool/parser"][@bs.val]
-external parse: (grammar,string, ~produceCount: int=?) => int = "parser";
-//let parse = (grammar,str,~produceCount:int=?) => parse(grammar,str,produceCount);
+external parse: (grammar,string ) => parse= "parse";
+
+let __len_identity: (parse) => int = [%bs.raw {|
+        function(parse){
+        return parse.length;
+        }    
+|}];
+
+let __length = (parse) => __len_identity(parse);
 
 module type Parse_sig = {
-    let parse: (grammar,string, ~produceCount:int) => int;
-    
+    let parse: (grammar,string ) => parse;
+    let length: (parse) => int; 
     };
 module Parse:Parse_sig = {
-    let parse =  (grammar,str,~produceCount:int) => parse(grammar,str,~produceCount); 
-
+    let parse =  (grammar,str) => parse(grammar,str); 
+    let length = (parse) => __len_identity(parse);
 }
 
 type generator;

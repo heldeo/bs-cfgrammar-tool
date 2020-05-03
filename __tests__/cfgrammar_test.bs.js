@@ -7,7 +7,7 @@ var CfgrammarTool = require("./../node_modules/cfgrammar-tool");
 
 var cfgrammar_js = CfgrammarTool;
 
-Jest.describe("Functionality of types submodule", (function (param) {
+Jest.describe("Types submodule, Symbol, Rule and equality functionality", (function (param) {
         Jest.test("Returns Symbol Object", (function (param) {
                 return Jest.Expect.toBe(true, Jest.Expect.expect(Cfgrammar.equals(/* `Sym */[
                                     4154599,
@@ -49,8 +49,22 @@ Jest.describe("Functionality of types submodule", (function (param) {
                                     (cfgrammar_js.types.Rule("E",prod_rules))
                                   ])));
               }));
-        return Jest.test("Grammar creation with rule (E, [T(a), NT(B)])", (function (param) {
-                      return Jest.Expect.toBe(true, Jest.Expect.expect(true));
+        return Jest.test("Tests reduction (string in grammar)", (function (param) {
+                      [
+                        Cfgrammar.Types.t("a"),
+                        Cfgrammar.Types.nt("B")
+                      ];
+                      var rules = [
+                        Cfgrammar.Types.rule("S", [
+                              Cfgrammar.Types.t("a"),
+                              Cfgrammar.Types.nt("B")
+                            ]),
+                        Cfgrammar.Types.rule("S", [Cfgrammar.Types.t("a")]),
+                        Cfgrammar.Types.rule("B", [])
+                      ];
+                      var grammar = Cfgrammar.grammar(rules, "S");
+                      var did_parse = Cfgrammar.Parse.length(Cfgrammar.Parse.parse(grammar, "a"));
+                      return Jest.Expect.toBe(true, Jest.Expect.expect(did_parse > 0));
                     }));
       }));
 

@@ -3,13 +3,8 @@ open Expect
 type cfgrammar;
 [@bs.module] external cfgrammar_js: cfgrammar = "./../node_modules/cfgrammar-tool"; 
 
-//Js.log(Cfgrammar.equals(Cfgrammar.Types.sym("NT","A"),[%raw {|new cfgrammar_js.types.Sym("NT","A")|}])) 
-//let obj = Cfgrammar.Types.sym("NT","A");
 
-//s.log([%raw {| typeof obj |}]); 
-
-let () = 
-describe ("Functionality of types submodule",()=>{
+describe ("Types submodule, Symbol, Rule and equality functionality",()=>{
     test("Returns Symbol Object", ()=>{
         expect( Cfgrammar.equals(`Sym(Cfgrammar.Types.sym("NT","A")),`Sym(Cfgrammar.Types.sym("NT","A")) ))  |> toBe(true); 
         });
@@ -20,20 +15,24 @@ describe ("Functionality of types submodule",()=>{
     test("Return Terminal (T)  with string passed into constructor", ()=>{
         expect(Cfgrammar.equals(`Sym(Cfgrammar.Types.t("A")),`Sym([%raw {| cfgrammar_js.types.T("A") |}] ))) |> toBe(true);
         });
-
     test("Rule creation with input: (E,  [T(a),NT(B)] )", ()=>{
         let prod_rules: array(Cfgrammar.sym)  = [|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]; 
-
 
         expect(Cfgrammar.equals(`Rule(Cfgrammar.Types.rule("E",prod_rules)),`Rule([%raw {| cfgrammar_js.types.Rule("E",prod_rules) |}] ))) |> toBe(true);
 
         });
-    test("Grammar creation with rule (E, [T(a), NT(B)])", ()=>{
-       // let prod_rules: array(Cfgrammar.sym)  = [|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]; 
-     //   let start = "S"; 
-        
-    expect( true) |> toBe(true);
+    test("Tests reduction (string in grammar)", () =>{
+    let rhs: array(Cfgrammar.sym)  = [|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]; 
+    let rules = [|
+    Cfgrammar.Types.rule("S",[|Cfgrammar.Types.t("a"),Cfgrammar.Types.nt("B")|]),
+    Cfgrammar.Types.rule("S",[|Cfgrammar.Types.t("a")|]),
+    Cfgrammar.Types.rule("B",[| |]) |];
+    let grammar = Cfgrammar.grammar(rules,"S");
+    let did_parse = Cfgrammar.Parse.parse(grammar,"a") 
+        |> Cfgrammar.Parse.length;
+    expect(did_parse > 0) |> toBe(true);
     });
 
-} );
-//Cfgrammar.equals(Cfgrammar.Types.sym("NT","A"),[%raw {|new cfgrammar_js.types.Sym("NT","A")|}] ) 
+}); 
+
+
