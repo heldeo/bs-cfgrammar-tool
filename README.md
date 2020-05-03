@@ -1,9 +1,6 @@
-
-
-
-
 # Context-Free Grammars for ReasonML/Bucklescript
 ![Badge_Build](https://github.com/heldeo/bs-cfgrammar-tool/workflows/Build/badge.svg)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg" width="10%"> ](https://www.npmjs.com/)
 
 This repository contains in-progress Reason/Bucklescript bindings for [Cfgrammar-tool](https://github.com/bakkot/cfgrammar-tool).
 
@@ -36,7 +33,7 @@ let generator = generator(exprGrammar,~determinism=false);
 let produced: string = generate(generator,21); // something like 'n*((n+(n)*n+n+n*n))*n'
 
 ```
-
+ 
 
 ## Installation
 
