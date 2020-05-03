@@ -1,6 +1,6 @@
 {
     "name": "bs-cfgrammar-tool",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "ReasonML bindings for the npm package cfgrammar-tool",
     "main": "index.js",
     "scripts": {
@@ -31,12 +31,12 @@
         "url": "https://github.com/heldeo/bs-cfgrammar-tool/issues"
     },
     "homepage": "https://github.com/heldeo/bs-cfgrammar-tool#readme",
-    "keywords":[
-    "reason",
-    "bubklescript",
-    "cfgrammar-tool",
-    "cfg",
-    "context-free grammars"
+    "keywords": [
+        "reason",
+        "bubklescript",
+        "cfgrammar-tool",
+        "cfg",
+        "context-free grammars"
     ],
     "dependencies": {
         "cfgrammar-tool": "^1.0.0",
