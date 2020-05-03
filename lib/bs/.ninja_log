@@ -24,3 +24,8 @@
 78	103	1588527414765877661	src/cfgrammar.cmj	8a7d072dabbdbf95
 78	103	1588527414765877661	src/cfgrammar.cmi	8a7d072dabbdbf95
 78	103	1588527414765877661	/home/chris/rflap/cfg_a_fortiori/src/cfgrammar.bs.js	8a7d072dabbdbf95
+0	92	1588530507940381034	__tests__/cfgrammar_test.reast	bc58362551c5adb0
+92	112	1588530507940381034	__tests__/cfgrammar_test.d	d7e043ee2f2e3385
+112	164	1588530507940381034	__tests__/cfgrammar_test.cmj	d0eefe45e15c8d19
+112	164	1588530507940381034	__tests__/cfgrammar_test.cmi	d0eefe45e15c8d19
+112	164	1588530507940381034	/home/chris/rflap/cfg_a_fortiori/__tests__/cfgrammar_test.bs.js	d0eefe45e15c8d19
