@@ -1,1 +1,0 @@
-{ "dirs" : [ "__tests__" , "src" ] , "pkgs" : [ [ "@glennsl/bs-jest" , "/home/chris/rflap/cfg_a_fortiori/node_modules/@glennsl/bs-jest" ] , [ "bs-platform" , "/home/chris/rflap/cfg_a_fortiori/node_modules/bs-platform" ] ] , "generated" : [] }
