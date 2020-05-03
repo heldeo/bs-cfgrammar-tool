@@ -1,6 +1,6 @@
 {
     "name": "bs-cfgrammar-tool",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "ReasonML bindings for the npm package cfgrammar-tool",
     "main": "index.js",
     "scripts": {
