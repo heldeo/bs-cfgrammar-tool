@@ -33,7 +33,7 @@ Parse.parse(exprGrammar, "n*(n+n)")
         |> Parse.length > 0; //false
 
 let generator = generator(exprGrammar,~determinism=false);
-let some_string:string = generate(generator,21);
+let produced: string = generate(generator,21); // something like 'n*((n+(n)*n+n+n*n))*n'
 
 ```
 
