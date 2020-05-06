@@ -37,7 +37,8 @@ let compare_sym = (obj1,obj2) => equals(obj1,obj2);
 let equals = (obj1: sub_types,obj2:sub_types) => switch(obj1,obj2){
     | (`Rule(obj1),`Rule(obj2)) => compare_rule(obj1,obj2);
     | (`Sym(obj1),`Sym(obj2)) => compare_sym(obj1,obj2);
-    | _=>  exception TypeMismatched(string);raise(TypeMismatched("Rule comparison with Symbol"));
+    | _=>           exception TypeMismatched(string);
+                    raise(TypeMismatched("Rule comparison with Symbol"));
     };
 
 module type Types_sig = {
@@ -66,7 +67,6 @@ let __len_identity: (parse) => int = [%bs.raw {|
         }    
 |}];
 
-let __length = (parse) => __len_identity(parse);
 
 module type Parse_sig = {
     let parse: (grammar,string ) => parse;
