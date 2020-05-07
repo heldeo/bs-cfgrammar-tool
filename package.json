@@ -39,7 +39,6 @@
         "context-free grammars"
     ],
     "dependencies": {
-        "cfgrammar-tool": "^1.0.0",
-        "npm-check-updates": "^4.1.2"
+        "cfgrammar-tool": "^1.0.0"
     }
 }
