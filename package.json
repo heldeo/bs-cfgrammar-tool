@@ -10,7 +10,7 @@
         "test": "jest --env node"
     },
     "devDependencies": {
-        "@glennsl/bs-jest": "^0.5.1",
+        "@glennsl/bs-jest": "^0.7.0",
         "bs-platform": "",
         "jest": "*"
     },
